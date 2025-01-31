@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women in Computing Archive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #F9F6E6;
+            color: #333;
+        }
+
+        header {
+            background: #8D77AB;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #E1EACD;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            border-bottom: 2px solid #8D77AB;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        section p {
+            text-align: center;
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .profile-card {
+            width: 200px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .profile-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .profile-card:hover .profile-inner {
+            transform: rotateY(180deg);
+        }
+
+        .profile-front, .profile-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1);
+        }
+
+        .profile-front {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-back {
+            background: #BAD8B6;
+            color: white;
+            flex-direction: column;
+            text-align: center;
+            padding: 0px;
+            transform: rotateY(180deg) scale(1);
+        }
+
+        footer {
+            background: #D3D3D3;
+            color: #333;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .timeline-container {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: #8D77AB;
+            margin-top: 40px;
+        }
+
+        .timeline-event {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .timeline-year {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .timeline-event::after {
+            content: attr(data-description);
+            display: none;
+            position: absolute;
+            background: white;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+            transform: translateX(-50%);
+            bottom: 30px;
+        }
+
+        .timeline-event:hover::after {
+            display: block;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Women in Computing Archive</h1>
+        <p>Commemorating the remarkable women who shaped the field of computer science.</p>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome</h2>
+            <p>Discover the untold stories of women who have made groundbreaking contributions to computer science. Explore their journeys, achievements, and the legacy they left behind.</p>
+        </section>
+
+        <section id="timeline-section">
+            <h2>Interactive Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-event" data-description="1943 - ENIAC Programmers: Six women programmed the first all-electronic computer.">
+                        <span class="timeline-year"></span>
+                    </div>
+                    <div class="timeline-event" data-description="1959 - COBOL Development: Grace Hopper led the development of COBOL.">
+                        <span class="timeline-year"></span>
+                    </div>
+                    <div class="timeline-event" data-description="1985 - Anita Borg Founded Systers: Online community for women in computing.">
+                        <span class="timeline-year"></span>
+                    </div>
+                    <div class="timeline-event" data-description="1994 - Grace Hopper Celebration: The largest gathering of women in computing.">
+                        <span class="timeline-year"></span>
+                    </div>
+                    <div class="timeline-event" data-description="2012 - Girls Who Code: Reshma Saujani founded the initiative to close the gender gap in tech.">
+                        <span class="timeline-year"></span>
+                    </div>
+                </div>                
+            </div>
+        </section>
+
+        <section id="archive">
+            <h2>Featured Profiles</h2>
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-inner">
+                        <div class="profile-front" style="background-image: url(./Ada\ Lovelace.png);"></div>
+                        <div class="profile-back">
+                            <h3>Ada Lovelace</h3>
+                            <p>First computer programmer and visionary of algorithms.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-inner">
+                        <div class="profile-front" style="background-image: url(./Grace\ Hopper.jpg);"></div>
+                        <div class="profile-back">
+                            <h3>Grace Hopper</h3>
+                            <p>Pioneer of programming languages and COBOL creator.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-inner">
+                        <div class="profile-front" style="background-image: url(./ENIAC.jpg);"></div>
+                        <div class="profile-back">
+                            <h3>The ENIAC Programmers</h3>
+                            <p>Trailblazers in early computer programming.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-inner">
+                        <div class="profile-front" style="background-image: url(./Annie_Easley.jpg);"></div>
+                        <div class="profile-back">
+                            <h3>Annie Easley</h3>
+                            <p>Pioneer in NASA computing and energy technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2>Articles & Resources</h2>
+                <p><a href="https://en.wikipedia.org/wiki/Women_in_computing">Women in Computing</a></p>
+                <p><a href="https://www.smithsonianmag.com/science-nature/history-human-computers-180972202">The Gendered History of Human Computers</a></p>
+                <p><a href="https://dl.acm.org/doi/10.1145/792548.611896">Unlocking the clubhouse: women in computing</a></p>
+        </section>
+
+        <section id="community">
+            <h2>Inspiration & Community</h2>
+            <p><a href="https://girlswhocode.com">Girls Who Code</a></p>
+            <p><a href="https://www.bestcolleges.com/bootcamps/guides/coding-organizations-for-women/">Some coding-organizations-for-women</a></p>
+        </section>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>This website was inspired by a class project in CSE 351, where the stories of the ENIAC programmers transformed our understanding of women’s roles in computing history.</p>
+            <p>Contact us to share feedback or contribute to the archive.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Women in Computing Archive. All rights reserved.</p>
+    </footer>
+
+    
+    <script src="./script.js"></script>
+</body>
+</html>
