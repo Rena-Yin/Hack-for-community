@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Women in Computing Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9F6E6;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #8D77AB;
+        }
+
+        .cta {
+            margin-top: 30px;
+            padding: 15px;
+            background: #8D77AB;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta:hover {
+            background: #755D99;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            border-radius: 40px;
+            margin-top: 20px;
+        }
+
+        /* Sidebar Menu */
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+         .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            text-align: right;
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu Bar -->
+    <div id="menu-container"></div>
+    <div class="menu-icon" onclick="openMenu()">☰</div>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="closeMenu()">✖</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog2.html">Blog</a></li>
+            <li><a href="group.html">Group</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1 class="title">About Women in Computing Archive</h1>
+        
+        <img class="about-image" src="Photo-me.jpeg" alt="Women in Computing">
+        
+        <p class="about-content">
+            The <span class="highlight">Women in Computing Archive</span> is a digital initiative dedicated to 
+            commemorating and celebrating the groundbreaking contributions of women in the field of computer science. 
+            Inspired by my 'CSE 351' course, where I first learned about the ENIAC programmers, this project aims 
+            to preserve history, educate others, and empower future generations of female coders.
+        </p>
+
+        <p class="about-content">
+            As someone who did not grow up in a tech-oriented environment, my perspective on computing and its pioneers 
+            has transformed over time. I initially viewed programming as intimidating, but through collaboration, 
+            problem-solving, and perseverance, I discovered its beauty. This project is my way of ensuring that 
+            women's contributions to computing are remembered and accessible to everyone.
+        </p>
+
+        <p class="about-content">
+            This archive is more than just a collection of stories—it is a platform for learning, inspiration, 
+            and engagement. From Ada Lovelace and Grace Hopper to modern-day trailblazers, our mission is 
+            to highlight the achievements that have shaped the digital world. We invite you to explore, contribute, 
+            and be a part of this growing archive.
+        </p>
+
+        <a href="https://rena-yin.github.io/" class="cta">Contact me</a>
+    </div>
+
+    <!-- JavaScript for Menu -->
+    <script>
+        function openMenu() {
+            document.getElementById('sidebar').style.right = '0';
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').style.right = '-100%';
+        }
+    </script>
+
+</body>
+</html>

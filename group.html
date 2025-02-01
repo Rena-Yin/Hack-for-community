@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups - Women in Computing Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9F6E6;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .left-panel {
+            width: 70%;
+        }
+
+        .right-panel {
+            width: 30%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .post-box input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .post-box button {
+            padding: 10px;
+            background: #8D77AB;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .post {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .comment-box {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .comment-box input {
+            width: 90%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .comment-box button {
+            padding: 8px;
+            background: #8D77AB;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Sidebar Menu */
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+         .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            text-align: right;
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-icon" onclick="openMenu()">☰</div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="closeMenu()">✖</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog2.html">Blog</a></li>
+            <li><a href="group.html">Group</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- Left Panel (Group Feed) -->
+        <div class="left-panel">
+            <h2>Groups Feed</h2>
+            <p>View groups and posts below.</p>
+
+            <!-- Post Input -->
+            <div class="post-box">
+                <input type="text" id="postInput" placeholder="Share something...">
+                <button onclick="createPost()">Create Post</button>
+                <div>
+                    <button>📷 Photo</button>
+                    <button>🎥 Video</button>
+                    <button>GIF</button>
+                </div>
+            </div>
+
+            <!-- Posts Container -->
+            <div id="postsContainer"></div>
+        </div>
+
+        <!-- Right Panel (My Groups) -->
+        <div class="right-panel">
+            <h3>My Groups</h3>
+            <input type="text" id="searchGroups" placeholder="Search groups...">
+            <div id="groupsList">
+                <p>Women in Computing A Group</p>
+                <p>1 member</p>
+            </div>
+            <button onclick="createGroup()">+ Create Group</button>
+        </div>
+    </div>
+
+    <script>
+        // Load menu dynamically
+        fetch("menu.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("menu-container").innerHTML = data;
+            });
+
+        // Function to create a post
+        function createPost() {
+            const postText = document.getElementById("postInput").value;
+            if (postText.trim() === "") return;
+
+            const postsContainer = document.getElementById("postsContainer");
+            const postElement = document.createElement("div");
+            postElement.classList.add("post");
+            postElement.innerHTML = `
+                <p><strong>User</strong> • Just now</p>
+                <p>${postText}</p>
+                <div>
+                    <button>👍 0</button>
+                    <button onclick="showCommentBox(this)">💬 0</button>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Write a comment...">
+                    <button onclick="postComment(this)">Post</button>
+                </div>
+            `;
+            postsContainer.prepend(postElement);
+            document.getElementById("postInput").value = "";
+        }
+
+        // Show comment box
+        function showCommentBox(button) {
+            const commentBox = button.parentElement.nextElementSibling;
+            commentBox.style.display = commentBox.style.display === "none" ? "block" : "none";
+        }
+
+        // Post a comment
+        function postComment(button) {
+            const commentText = button.previousElementSibling.value;
+            if (commentText.trim() === "") return;
+            const commentElement = document.createElement("p");
+            commentElement.innerHTML = `<strong>User:</strong> ${commentText}`;
+            button.parentElement.parentElement.appendChild(commentElement);
+            button.previousElementSibling.value = "";
+        }
+
+        // Create a new group
+        function createGroup() {
+            alert("Feature coming soon!");
+        }
+    </script>
+
+    <!-- JavaScript for Menu -->
+    <script>
+        function openMenu() {
+            document.getElementById('sidebar').style.right = '0';
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').style.right = '-100%';
+        }
+    </script>
+
+</body>
+</html>

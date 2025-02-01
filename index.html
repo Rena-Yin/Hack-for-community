@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women in Computing Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9F6E6;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Background Image Section */
+        .hero-image {
+            width: 80%;
+            height: 600px;
+            background-image: url('./ENIAC-programmers.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: auto;
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            text-align: right;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Tech Stories Section */
+        .tech-stories {
+            padding: 50px 10%;
+            text-align: left;
+        }
+
+        .tech-stories h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Card Grid Layout */
+        .stories-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Story Cards */
+        .story-card {
+            position: relative;
+            width: 30%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Dark Overlay */
+        .story-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Author Name */
+        .author {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            color: white;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        /* Story Text Content */
+        .story-content {
+            position: relative;
+            padding: 20px;
+            color: white;
+            z-index: 2;
+        }
+
+        .story-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer: View & Like Icons */
+        .story-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div>
+            <h2>Women in<br>Computing Archive</h2>
+        </div>
+        <div class="menu-icon" onclick="openMenu()">☰</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>EMPOWERING FEMALE CODERS</h1>
+        <p>Commemorating the remarkable women who shaped the field of computer science.</p>
+    </section>
+
+    <!-- Background Image -->
+    <div class="hero-image"></div>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="closeMenu()">✖</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog2.html">Blog</a></li>
+            <li><a href="group.html">Group</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Tech Stories Section -->
+    <section class="tech-stories">
+        <h2>THEIR STORIES</h2>
+        <div class="stories-container">
+            <div class="story-card" style="background-image: url('./Ada\ Lovelace.png');">
+                <span class="author">Ada Lovelace</span>
+                <div class="story-content">
+                    <h3><a href="https://en.wikipedia.org/wiki/Ada_Lovelace">First computer programmer and visionary of algorithms.</a></h3>
+                </div>
+            </div>
+            <div class="story-card" style="background-image: url('./Grace\ Hopper.jpg');">
+                <span class="author">Grace Hopper</span>
+                <div class="story-content">
+                    <h3><a href="https://en.wikipedia.org/wiki/Grace_Hopper">Pioneer of programming languages and COBOL creator.</a></h3>
+                </div>
+            </div>
+            <div class="story-card" style="background-image: url('./ENIAC.jpg');">
+                <span class="author">ENIAC Programmers</span>
+                <div class="story-content">
+                    <h3><a href="https://en.wikipedia.org/wiki/ENIAC#">Trailblazers in early computer programming.</a></h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- JavaScript for Menu -->
+    <script>
+        function openMenu() {
+            document.getElementById('sidebar').style.right = '0';
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').style.right = '-100%';
+        }
+    </script>
+
+</body>
+</html>

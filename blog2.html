@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Women in Computing Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9F6E6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 20px;
+            background: white;
+            text-align: left;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Search Bar */
+        .search-container {
+            /* width: 50%; */
+            flex: 1;
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            width: 50%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Sidebar Menu */
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+         .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            text-align: right;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Blog Section */
+        .blog-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .blog-post {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .blog-post img {
+            width: 50%;
+            height: auto;
+        }
+
+        .blog-content {
+            padding: 20px;
+            width: 50%;
+        }
+
+        .blog-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-content p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .blog-meta {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .blog-footer {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .blog-footer span {
+            color: #666;
+        }
+
+        .like-icon {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Pagination */
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1rem;
+            border: none;
+            background: #8D77AB;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .blog-post {
+                flex-direction: column;
+            }
+            .blog-post img, .blog-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>All Posts</div>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search blog posts..." onkeyup="searchPosts()">
+        </div>
+        <div class="menu-icon" onclick="openMenu()">☰</div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="closeMenu()">✖</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog2.html">Blog</a></li>
+            <li><a href="group.html">Group</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Blog Container -->
+    <div class="blog-container" id="blogContainer">
+        <!-- Blog posts will be inserted here dynamically -->
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button id="prevPage" onclick="changePage(-1)" disabled>Previous</button>
+        <button id="nextPage" onclick="changePage(1)">Next</button>
+    </div>
+
+    <script>
+        const blogPosts = [
+            {
+                title: "Empowering Females in STEM: Highlighting Women Programmers",
+                author: "Rena Y",
+                time: "1 hour ago",
+                readTime: "2 min read",
+                description: "In the fast-evolving world of STEM, women have been making significant strides...",
+                image: "women-programmer.jpg",
+                link: "https://iste.org/blog/empowering-girls-in-stem"
+            },
+            {
+                title: "Women Pioneers in Computer Science",
+                author: "Rena Y",
+                time: "3 hours ago",
+                readTime: "4 min read",
+                description: "Highlighting the most influential women who paved the way for technology...",
+                image: "women-pionieer.png",
+                link: "https://www.purdueglobal.edu/blog/information-technology/history-women-information-technology-6-female-computer-science-pioneers/"
+            },
+            {
+                title: "Breaking Barriers: Women in Tech Leadership",
+                author: "Rena Y",
+                time: "5 hours ago",
+                readTime: "5 min read",
+                description: "Examining the challenges and achievements of women in tech leadership roles...",
+                image: "Leadership-Development.jpg",
+                link: "https://www.cio.com/article/201905/women-in-tech-statistics-the-hard-truths-of-an-uphill-battle.html"
+            }
+        ];
+
+        let currentPage = 0;
+        const postsPerPage = 2;
+
+        function displayPosts() {
+            const blogContainer = document.getElementById("blogContainer");
+            blogContainer.innerHTML = "";
+            const start = currentPage * postsPerPage;
+            const end = start + postsPerPage;
+            const postsToShow = blogPosts.slice(start, end);
+
+            postsToShow.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("blog-post");
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="Blog Image">
+                    <div class="blog-content">
+                        <p class="blog-meta">${post.author} • ${post.time} • ${post.readTime}</p>
+                        <h2 onclick="location.href='${post.link}'">${post.title}</h2>
+                        <p>${post.description}</p>
+                        <div class="blog-footer">
+                            <span>👁️ 0 views</span>
+                            <span>💬 0 comments</span>
+                            <span class="like-icon">❤️</span>
+                        </div>
+                    </div>
+                `;
+                blogContainer.appendChild(postElement);
+            });
+
+            document.getElementById("prevPage").disabled = currentPage === 0;
+            document.getElementById("nextPage").disabled = end >= blogPosts.length;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            displayPosts();
+        }
+
+        function searchPosts() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const filteredPosts = blogPosts.filter(post => post.title.toLowerCase().includes(query));
+            const blogContainer = document.getElementById("blogContainer");
+            blogContainer.innerHTML = "";
+
+            if (filteredPosts.length === 0) {
+                blogContainer.innerHTML = `<p style="text-align: center; font-size: 1.2rem; color: #999;">0 results found</p>`;
+                return;
+            }
+
+            filteredPosts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("blog-post");
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="Blog Image">
+                    <div class="blog-content">
+                        <p class="blog-meta">${post.author} • ${post.time} • ${post.readTime}</p>
+                        <h2 onclick="location.href='${post.link}'">${post.title}</h2>
+                        <p>${post.description}</p>
+                        <div class="blog-footer">
+                            <span>👁️ 0 views</span>
+                            <span>💬 0 comments</span>
+                            <span class="like-icon">❤️</span>
+                        </div>
+                    </div>
+                `;
+                blogContainer.appendChild(postElement);
+            });
+        }
+
+        displayPosts();
+    </script>
+
+    <!-- JavaScript for Menu -->
+    <script>
+        function openMenu() {
+            document.getElementById('sidebar').style.right = '0';
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').style.right = '-100%';
+        }
+    </script>
+
+</body>
+</html>
